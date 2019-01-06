@@ -1,0 +1,352 @@
+
+.content{
+    padding: 5%;
+    width: 90%;
+}
+
+
+.sticky {
+    position: -webkit-sticky;
+    top: 15px;}
+
+
+header{
+    margin-top: 0%;
+
+    color: white;
+    background:url('../pics/headerpic.jpg');
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+.bodyDiv{
+    margin: 0%;
+
+}
+.menu {
+    display: block;
+
+    padding: 0;
+    width: 100%;
+    background: url('../pics/headerpic.jpg');
+
+
+
+}
+
+nav.menu ul {
+  
+    list-style-type: none;
+
+    margin: 0;
+    padding: 0;
+
+}
+
+nav.menu ul li {
+    width: 100%;
+    border-bottom-style: solid;
+
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+
+nav.menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+    line-height: 2em;
+    padding: 0 15px;
+    font-size: 16px;
+    text-align: center  ;
+
+}
+
+a.aktivni{
+    color: #f1f441;;
+
+}
+
+
+nav.menu a:hover {
+    background: #f1f441;
+
+}
+
+nav.menu {
+    display: block;
+    width: 100%;
+
+    font-size: 0;
+}
+
+
+
+
+
+@media (min-width: 600px) {
+    #logo {
+        background: url('../pics/logo.png') no-repeat;
+        width: 96px;
+        height: 96px;
+        float: left;
+        margin: 7px 20px 0px 20px;
+    }
+
+    nav{
+        margin-top: 10px;
+        border-radius: 10px ;
+
+    }
+    ul{
+        background: url("../pics/headerpic.jpg");
+        border-radius: 10px ;
+    }
+
+    .casSeznam{
+
+    }
+
+
+    header{
+        background:url("../pics/headerpic.jpg");
+        margin-top: 0em;
+        padding-bottom: 0.5em;
+
+
+    }
+
+    nav.menu {
+        background: #9542f4;
+
+        border-width: thin;
+
+
+    }
+
+    nav.menu ul li {
+        width: auto;
+        border-width: thin;
+        border: #fff21d;
+
+        margin:  0 3% 0 3%;
+
+        display: inline-block;
+    }
+    nav.menu a {
+        line-height: 50px;
+
+
+
+    }
+
+    body{
+        margin: 0;
+        
+
+
+
+    background-color: black;
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+
+
+    button {
+
+
+
+    }
+
+    nav.menu ul {
+        width: 100%;
+        text-align: center;
+    }
+
+
+
+    #nazevKina{
+
+
+
+        float: left;
+
+        margin-top: 0;
+        padding-top: 1%;
+        margin-left: 5%;
+    }
+
+    #loginButton{
+        display: inline-block;
+
+
+    }
+
+
+
+    .body_div{
+
+        position: absolute;
+
+        left: 15%;
+        width: 70%;
+        margin-top: 10px;
+
+
+
+
+        border-radius: 20px;
+
+        box-sizing: border-box;
+    }
+
+
+    .aktivni{
+        border-style: solid;
+
+
+        border-color: #fff21d;
+        border-width: 1px;
+
+
+
+
+    }
+    a {
+        color: #cc0000;
+    }
+
+    a:link {
+        color: #cc0000;
+    }
+    a:hover { /*hover menu */
+        color: #9542f4;
+    }
+
+    a.aktivni{ 
+     color:#9542f4;
+    }
+
+
+    #head_text{
+        margin-top: 0.9em;
+        padding-left: 1em;
+        font-size: 2.4em;
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    .content{          
+        background: url("../pics/paper.jpg");
+        border-radius: 5px ;
+        padding: 5%;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        margin-top: 4%;
+        box-shadow: 0px 0px 52px 6px rgba(250,250,250,1);
+
+    }
+
+
+
+
+    #wrapper {
+
+        overflow: hidden; /* will contain if #first is longer than #second */
+    }
+    #first {
+        width: 60%;
+        float:left; /* add this */
+
+    }
+    #second {
+        padding-left: 10%;
+        padding-top: 2em;
+        overflow: hidden; /* if you don't want #second to wrap below #first */
+    }
+
+
+
+    h3,h4{
+        margin-bottom: 0;
+    }
+
+
+    @media print {
+
+            body * {
+                visibility: hidden;
+            }
+           .content * {
+                visibility: visible;
+            }
+            .content {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+    }
+
+@media print {
+    iframe{
+        display: none;
+    }
+    a{
+        display: none;
+    }
+
+    button{
+        display: none;
+    }
+
+    body {
+        visibility: hidden;
+    }
+
+    .content {
+        visibility: visible;
+    }
+
+    #dnesDiv{
+        display: block;
+    }
+    #zitraDiv{
+        display: block;
+    }
+    #pozitriDiv {
+        display: block;
+    }
+
+    #den4Div {
+        display: block;
+    }
+
+
+
+    .content {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
