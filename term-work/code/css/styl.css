@@ -1,43 +1,310 @@
+.wrong {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #F00;
+    border: 2px solid #666;
+    width: auto;
+    color: #000000;
+}
 
-.content{
+.box {
+    background: white;
+    width: 300px;
+    border-radius: 6px;
+    margin: 0 auto 0 auto;
+    padding: 0px 0px 70px 0px;
+    border: #2980b9 4px solid;
+
+}
+
+.email {
+    background: #ecf0f1;
+    border: #ccc 1px solid;
+    border-bottom: #ccc 2px solid;
+    padding: 8px;
+    width: 250px;
+    color: #AAAAAA;
+    margin-top: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+}
+
+.textJmeno {
+    border-radius: 4px;
+    background: #ecf0f1;
+    border: #ccc 1px solid;
+    padding: 8px;
+    width: 250px;
+    font-size: 1em;
+}
+
+
+.password {
+    border-radius: 4px;
+    background: #ecf0f1;
+    border: #ccc 1px solid;
+    padding: 8px;
+    width: 250px;
+    font-size: 1em;
+}
+
+
+
+
+/*tohle promysli*/
+* {
+    box-sizing: border-box;
+}
+
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #fff21d;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #c242f4;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.obal {
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+
+.column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+}
+
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 600px) {
+    .column, input[type=submit] {
+        width: 90%;
+        margin-top: 0;
+    }
+}
+
+.prihlaseni {
+
+    align-content:center;
+}
+
+.content {
     padding: 5%;
     width: 90%;
 }
 
-
 .sticky {
     position: -webkit-sticky;
-    top: 15px;}
-
-
-header{
-    margin-top: 0%;
-
-    color: white;
-    background:url('../pics/headerpic.jpg');
+    top: 15px;
 }
 
-body{
+header {
+    margin-top: -6%;
+    background: url('../pics/front.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.button {
+    background-color: purple;
+    border: #f1f1f1;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+
+
+
+
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+
+
+    /*table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .4em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }*/
+}
+
+
+body {
     margin: 0;
     padding: 0;
 }
-.bodyDiv{
+
+.bodyDiv {
     margin: 0%;
 
 }
+
 .menu {
     display: block;
-
     padding: 0;
     width: 100%;
-    background: url('../pics/headerpic.jpg');
-
-
+    /*background: gray;*/
 
 }
 
+.footerLine {
+    text-align: center;
+
+}
+
+main {
+    width: 90%;
+    background-color: #f0f0f0;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0px 0px;
+}
+
 nav.menu ul {
-  
+
     list-style-type: none;
 
     margin: 0;
@@ -61,18 +328,18 @@ nav.menu a {
     line-height: 2em;
     padding: 0 15px;
     font-size: 16px;
-    text-align: center  ;
+    text-align: center;
 
 }
 
-a.aktivni{
+a.aktivni {
     color: #f1f441;;
 
 }
 
 
 nav.menu a:hover {
-    background: #f1f441;
+    background: #9542f4;
 
 }
 
@@ -83,47 +350,59 @@ nav.menu {
     font-size: 0;
 }
 
-
+footer {
+    clear: both;
+    position: relative;
+    height: 10px;
+    margin-top: 0px;
+}
 
 
 
 @media (min-width: 600px) {
     #logo {
         background: url('../pics/logo.png') no-repeat;
+        background-repeat: no-repeat;
+        background-size: cover;
         width: 96px;
-        height: 96px;
+        height: 95px;
         float: left;
         margin: 7px 20px 0px 20px;
     }
 
-    nav{
+    nav {
         margin-top: 10px;
-        border-radius: 10px ;
-
+        border-radius: 10px;
     }
-    ul{
+
+    ul {
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    header {
         background: url("../pics/headerpic.jpg");
-        border-radius: 10px ;
-    }
+        background-repeat: no-repeat;
+        background-size: cover;
 
-    .casSeznam{
-
-    }
-
-
-    header{
-        background:url("../pics/headerpic.jpg");
         margin-top: 0em;
         padding-bottom: 0.5em;
+    }
 
+    main {
 
+        width: 100%;
+        background-color: #f0f0f0;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 0px 0px;
     }
 
     nav.menu {
         background: #9542f4;
 
-        border-width: thin;
-
+        border-width: 5px;
+        color: black;
 
     }
 
@@ -132,89 +411,44 @@ nav.menu {
         border-width: thin;
         border: #fff21d;
 
-        margin:  0 3% 0 3%;
-
+        margin: 0 5% 0 5%;
         display: inline-block;
     }
+
     nav.menu a {
-        line-height: 50px;
-
+        line-height: 30px;
 
 
     }
 
-    body{
+    body {
         margin: 0;
-        
-
-
-
-    background-color: black;
+        background-color: gray;
         background-repeat: no-repeat;
-        background-size:cover;
+        background-size: cover;
     }
 
-
-    button {
-
-
-
-    }
 
     nav.menu ul {
+        background: purple;
+
+        position: relative;
         width: 100%;
         text-align: center;
     }
 
-
-
-    #nazevKina{
-
-
-
-        float: left;
-
-        margin-top: 0;
-        padding-top: 1%;
-        margin-left: 5%;
-    }
-
-    #loginButton{
-        display: inline-block;
-
-
-    }
-
-
-
-    .body_div{
-
-        position: absolute;
-
-        left: 15%;
-        width: 70%;
-        margin-top: 10px;
-
-
-
-
-        border-radius: 20px;
-
+    .body_div {
+        position: relative;
+        margin-top: -10px;
         box-sizing: border-box;
     }
 
-
-    .aktivni{
-        border-style: solid;
-
-
-        border-color: #fff21d;
-        border-width: 1px;
-
-
-
-
+    .active {
+        border-width: 5px;
+        border-style: inset;
+        border-color: #c242f4;
     }
+
     a {
         color: #cc0000;
     }
@@ -222,16 +456,17 @@ nav.menu {
     a:link {
         color: #cc0000;
     }
-    a:hover { /*hover menu */
+
+    a:hover {
         color: #9542f4;
     }
 
-    a.aktivni{ 
-     color:#9542f4;
+    a.aktivni {
+        color: #9542f4;
     }
 
 
-    #head_text{
+    #head_text {
         margin-top: 0.9em;
         padding-left: 1em;
         font-size: 2.4em;
@@ -239,101 +474,109 @@ nav.menu {
         font-family: "Times New Roman", Times, serif;
     }
 
-    .content{          
-        background: url("../pics/paper.jpg");
-        border-radius: 5px ;
+    .content {
+        background: #825816;
+        background-repeat: no-repeat;
+        border-radius: 5px;
         padding: 5%;
-        width: 100%;
+        width: 90%;
         height: auto;
         margin-bottom: 10px;
         margin-top: 4%;
-        box-shadow: 0px 0px 52px 6px rgba(250,250,250,1);
+        box-shadow: 0px 0px 52px 6px rgba(250, 250, 250, 1);
 
     }
-
-
 
 
     #wrapper {
 
-        overflow: hidden; /* will contain if #first is longer than #second */
-    }
+        overflow: hidden;     }
+
     #first {
-        width: 60%;
-        float:left; /* add this */
+        width: 50%;
+        float: left; /* add this */
 
     }
+
+    .button:hover {
+        background-color: mediumpurple
+    }
+
     #second {
-        padding-left: 10%;
-        padding-top: 2em;
-        overflow: hidden; /* if you don't want #second to wrap below #first */
+        padding-left: 25%;
+        padding-top: 1.5em;
+        float: inside;
+        overflow: hidden;
     }
 
 
-
-    h3,h4{
+    h3, h4 {
         margin-bottom: 0;
     }
 
 
     @media print {
 
-            body * {
-                visibility: hidden;
-            }
-           .content * {
-                visibility: visible;
-            }
-            .content {
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
+        body * {
+            visibility: hidden;
+        }
+
+        .content * {
+            visibility: visible;
+        }
+
+        .content {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
 
     }
 
-@media print {
-    iframe{
-        display: none;
-    }
-    a{
-        display: none;
-    }
+    @media print {
+        iframe {
+            display: none;
+        }
 
-    button{
-        display: none;
-    }
+        a {
+            display: none;
+        }
 
-    body {
-        visibility: hidden;
-    }
+        button {
+            display: none;
+        }
 
-    .content {
-        visibility: visible;
-    }
+        body {
+            visibility: hidden;
+        }
 
-    #dnesDiv{
-        display: block;
-    }
-    #zitraDiv{
-        display: block;
-    }
-    #pozitriDiv {
-        display: block;
-    }
+        .content {
+            visibility: visible;
+        }
 
-    #den4Div {
-        display: block;
+        #dnesDiv {
+            display: block;
+        }
+
+        #zitraDiv {
+            display: block;
+        }
+
+        #pozitriDiv {
+            display: block;
+        }
+
+        #den4Div {
+            display: block;
+        }
+
+
+        .content {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
     }
-
-
-
-    .content {
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-}
 
 
 }
