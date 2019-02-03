@@ -26,7 +26,7 @@ if ($_POST) {
             $roleUzivatele = 'registrovany';
             try {
                 $conn = Connection::getPdoInstance();
-                $obj = new UserRepository($conn);
+                $obj = new UzivatelRepo($conn);
                 $obj->CreateUzivatel($jmeno, $heslo, $email, $roleUzivatele);
                 header('Location: ?page=login');
             } catch (PDOException $exception) {

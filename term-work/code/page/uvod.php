@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+
 <head>
     <style>
         .column {
@@ -31,4 +30,3 @@
     </div>
 </div>
 </body>
-</html>

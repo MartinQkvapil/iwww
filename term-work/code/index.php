@@ -12,28 +12,31 @@ function __autoload($className)
     }
     return false;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/styl.css" type="text/css">
-    <title>Kampelička Letohrad</title>
+    <link rel="stylesheet" href="css/index-style.css" type="text/css">
+    <title>Nase Kampelicka</title>
 </head>
 <body>
 <header>
 
     <div class="header" id="wrapper">
         <div id="first">
-            <div id="logo"></div>
-            <h1 style="font-family: 'Courier New'">Kampelička</h1>
+            <a href="<?= BASE_URL . "?page=index.php" ?>"> <div id="logo"></div> </a>
+            <a href="<?= BASE_URL . "?page=index.php" ?>" class="head_text">Naše&nbsp;Kampelička</a>
         </div>
         <div id=second>
-            <div id=prihlaseni>
+            <div class=prihlaseni>
                 <?php if (Authentication::getInstance()->hasIdentity()) {
                     $tmp = Authentication::getInstance()->getIdentity();
-                    echo "Přihlášený: " . $tmp['jmeno']; ?>
+                    echo "Přihlášený:   " . $tmp['jmeno']; ?>
                     <a href="<?= BASE_URL . "?page=logout" ?>" class="button">LOGOUT</a>
+                    <a href="<?= BASE_URL . "?page=muj-ucet" ?>" class="button">MŮJ ÚČET</a>
                     <?php
                 } else {
                     ?>

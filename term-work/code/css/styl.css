@@ -1,3 +1,14 @@
+.button {
+    background-color: purple;
+    border: #f1f1f1;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
 .wrong {
     margin-top: 5px;
     padding: 5px;
@@ -6,6 +17,16 @@
     width: auto;
     color: #000000;
 }
+
+.good {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #34ff32;
+    border: 2px solid #666;
+    width: auto;
+    color: #000000;
+}
+
 
 .box {
     background: white;
@@ -49,30 +70,84 @@
 }
 
 
-
-
-/*tohle promysli*/
 * {
     box-sizing: border-box;
 }
 
 
-input[type=text], select, textarea {
+
+
+
+/*formulaře*/
+input[type=text], select {
+     width: 100%;
+     padding: 12px 20px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+ }
+
+input[type=password], select {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #fff21d;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-input[type=submit] {
-    background-color: #c242f4;
-    color: white;
+input[type=email], select {
+    width: 100%;
     padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=number], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=date], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+input[type=submit] {
+    width: 100%;
+    background-color: purple;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
 }
+
+
+
+input[type=submit]:hover {
+    background-color: #E05EC3;
+}
+
 
 
 .obal {
@@ -96,44 +171,16 @@ input[type=submit] {
     clear: both;
 }
 
-@media screen and (max-width: 600px) {
+/*@media screen and (max-width: 600px) {
     .column, input[type=submit] {
         width: 90%;
         margin-top: 0;
     }
-}
+}*/
 
-.prihlaseni {
 
-    align-content:center;
-}
 
-.content {
-    padding: 5%;
-    width: 90%;
-}
 
-.sticky {
-    position: -webkit-sticky;
-    top: 15px;
-}
-
-header {
-    margin-top: -6%;
-    background: url('../pics/front.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.button {
-    background-color: purple;
-    border: #f1f1f1;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-}
 
 
 
@@ -177,99 +224,7 @@ table th {
 }
 
 
-@media screen and (max-width: 600px) {
-    table {
-        border: 0;
-    }
 
-    table caption {
-        font-size: 1.3em;
-    }
-
-    table thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-
-    table tr {
-        border-bottom: 3px solid #ddd;
-        display: block;
-        margin-bottom: .625em;
-    }
-
-    table td {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        font-size: .8em;
-        text-align: right;
-    }
-
-    table td::before {
-        /*
-        * aria-label has no advantage, it won't be read inside a table
-        content: attr(aria-label);
-        */
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    table td:last-child {
-        border-bottom: 0;
-    }
-
-
-    /*table {
-        border: 0;
-    }
-
-    table caption {
-        font-size: 1.3em;
-    }
-
-    table thead {
-        border: none;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-
-    table tr {
-        border-bottom: 3px solid #ddd;
-        display: block;
-        margin-bottom: .4em;
-    }
-
-    table td {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        font-size: .8em;
-        text-align: right;
-    }
-
-    table td::before {
-
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    table td:last-child {
-        border-bottom: 0;
-    }*/
-}
 
 
 body {
@@ -356,234 +311,6 @@ footer {
     height: 10px;
     margin-top: 0px;
 }
-
-
-
-@media (min-width: 600px) {
-    #logo {
-        background: url('../pics/logo.png') no-repeat;
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 96px;
-        height: 95px;
-        float: left;
-        margin: 7px 20px 0px 20px;
-    }
-
-    nav {
-        margin-top: 10px;
-        border-radius: 10px;
-    }
-
-    ul {
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    header {
-        background: url("../pics/headerpic.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-
-        margin-top: 0em;
-        padding-bottom: 0.5em;
-    }
-
-    main {
-
-        width: 100%;
-        background-color: #f0f0f0;
-        text-align: center;
-        box-sizing: border-box;
-        padding: 0px 0px;
-    }
-
-    nav.menu {
-        background: #9542f4;
-
-        border-width: 5px;
-        color: black;
-
-    }
-
-    nav.menu ul li {
-        width: auto;
-        border-width: thin;
-        border: #fff21d;
-
-        margin: 0 5% 0 5%;
-        display: inline-block;
-    }
-
-    nav.menu a {
-        line-height: 30px;
-
-
-    }
-
-    body {
-        margin: 0;
-        background-color: gray;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-
-    nav.menu ul {
-        background: purple;
-
-        position: relative;
-        width: 100%;
-        text-align: center;
-    }
-
-    .body_div {
-        position: relative;
-        margin-top: -10px;
-        box-sizing: border-box;
-    }
-
-    .active {
-        border-width: 5px;
-        border-style: inset;
-        border-color: #c242f4;
-    }
-
-    a {
-        color: #cc0000;
-    }
-
-    a:link {
-        color: #cc0000;
-    }
-
-    a:hover {
-        color: #9542f4;
-    }
-
-    a.aktivni {
-        color: #9542f4;
-    }
-
-
-    #head_text {
-        margin-top: 0.9em;
-        padding-left: 1em;
-        font-size: 2.4em;
-        color: white;
-        font-family: "Times New Roman", Times, serif;
-    }
-
-    .content {
-        background: #825816;
-        background-repeat: no-repeat;
-        border-radius: 5px;
-        padding: 5%;
-        width: 90%;
-        height: auto;
-        margin-bottom: 10px;
-        margin-top: 4%;
-        box-shadow: 0px 0px 52px 6px rgba(250, 250, 250, 1);
-
-    }
-
-
-    #wrapper {
-
-        overflow: hidden;     }
-
-    #first {
-        width: 50%;
-        float: left; /* add this */
-
-    }
-
-    .button:hover {
-        background-color: mediumpurple
-    }
-
-    #second {
-        padding-left: 25%;
-        padding-top: 1.5em;
-        float: inside;
-        overflow: hidden;
-    }
-
-
-    h3, h4 {
-        margin-bottom: 0;
-    }
-
-
-    @media print {
-
-        body * {
-            visibility: hidden;
-        }
-
-        .content * {
-            visibility: visible;
-        }
-
-        .content {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-    }
-
-    @media print {
-        iframe {
-            display: none;
-        }
-
-        a {
-            display: none;
-        }
-
-        button {
-            display: none;
-        }
-
-        body {
-            visibility: hidden;
-        }
-
-        .content {
-            visibility: visible;
-        }
-
-        #dnesDiv {
-            display: block;
-        }
-
-        #zitraDiv {
-            display: block;
-        }
-
-        #pozitriDiv {
-            display: block;
-        }
-
-        #den4Div {
-            display: block;
-        }
-
-
-        .content {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-    }
-
-
-}
-
-
-
-
 
 
 

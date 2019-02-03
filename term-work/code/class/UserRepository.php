@@ -9,23 +9,23 @@ class UserRepository
         $this->conn = $conn;
     }
 
-    public function getAllUsers()
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM uzivatel");
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
+
 
     public function getAllDetailUdalosti()
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM detail_udalosti");
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
+{
+    $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+    $setChar->execute();
+    $stmt = $this->conn->prepare("SELECT * FROM detail_udalosti");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
 
 
     public function getAllUdalosti()
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("SELECT * FROM udalost");
         $stmt->execute();
         return $stmt->fetchAll();
@@ -33,39 +33,27 @@ class UserRepository
 
     public function getAllMistnosti()
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("SELECT * FROM mistnost");
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function UpdateUdalost(string $id, string $nazev)
-    {
-        $stmt = $this->conn->prepare("UPDATE udalost 
-                    SET id=:id, heslo=:heslo, email=:email, roleUzivatele=:roleUzivatele 
-                    WHERE idUzivatel = :id");
-        $stmt->bindParam(":id", $id);
-        $stmt->bindParam(":nazev", $nazev);
 
-
-        if ($stmt->execute()) {
-            echo "<div class='alert alert-success'>Update proveden</div>";
-        } else {
-            echo "<div class='alert alert-danger'>Chyba UPDATE</div>";
-        }
-
-
-    }
 
     public function DeleteMistnost(string $id)
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("DELETE FROM mistnost WHERE idmistnost LIKE concat('%', :id, '%') ");
         $stmt->bindParam(":id", $id);
         if ($stmt->execute()) {
             $message = "Smazano";
-            echo "<script type='text/javascript'>alert('$message');</script>";
+            echo "<div class=\"good\">" . "delete proveden!" . "</div>";
         } else {
             $message = "Chyba mazani";
-            echo "<script type='text/javascript'>alert('$message');</script>";
+            echo "<div class=\"wrong\">" . "delete NE-proveden!" . "</div>";
         }
 
         //return $stmt->fetchAll();
@@ -73,12 +61,14 @@ class UserRepository
 
     public function DeleteUdalost(string $id)
     {
-        $stmt = $this->conn->prepare("DELETE FROM udalost WHERE idudalost LIKE concat('%', :id, '%') ");
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
+        $stmt = $this->conn->prepare("DELETE FROM udalost WHERE idudalost LIKE  :id ");
         $stmt->bindParam(":id", $id);
         if ($stmt->execute()) {
-            echo "<div class='alert alert-success'>delete proveden</div>";
+            echo "<div class=\"good\">" . "delete proveden!" .  "</div>";
         } else {
-            echo "<div class='alert alert-danger'>Chyba delete</div>";
+            echo "<div class=\"wrong\">" . "delete NEproveden!" . "</div>";
         }
 
         //return $stmt->fetchAll();
@@ -86,7 +76,9 @@ class UserRepository
 
     public function readOneUdalost(string $id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM udalost WHERE idudalost LIKE concat('%', :id, '%') ");
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
+        $stmt = $this->conn->prepare("SELECT * FROM udalost WHERE idudalost LIKE :id ");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -94,16 +86,28 @@ class UserRepository
 
     public function readDetailUdalosti(string $id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM detail_udalosti WHERE udalost_idudalost LIKE concat('%', :id, '%') ");
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
+        $stmt = $this->conn->prepare("SELECT * FROM detail_udalosti WHERE udalost_idudalost LIKE  :id ");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-
-    public function readOneMistnost(string $id)
+    public function readOneDetailUdalosti(string $id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM mistnost WHERE idmistnost LIKE concat('%', :id, '%') ");
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
+        $stmt = $this->conn->prepare("SELECT * FROM detail_udalosti WHERE iddetail_udalosti=:id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function readOneMistnost(string $id){
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
+         $stmt = $this->conn->prepare("SELECT * FROM mistnost WHERE idmistnost LIKE  :id ");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -112,6 +116,8 @@ class UserRepository
 
     public function createDetailUdalosti(string $datum, string $popis, int $pocet_listku, int $cenalistku, int $udalost_idudalost, int $uzivatel_iduzivatel, int $mistnost_idmistnost)
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("INSERT INTO detail_udalosti (iddetail_udalosti ,datum, popis, pocet_listku, cenalistku, udalost_idudalost, uzivatel_iduzivatel, mistnost_idmistnost ) 
 VALUES (NULL, :datum, :popis, :pocet_listku, :cenalistku, :udalost_idudalost, :uzivatel_iduzivatel, :mistnost_idmistnost)");
         $stmt->bindParam(":datum", $datum);
@@ -122,20 +128,14 @@ VALUES (NULL, :datum, :popis, :pocet_listku, :cenalistku, :udalost_idudalost, :u
         $stmt->bindParam(":uzivatel_iduzivatel", $uzivatel_iduzivatel);
         $stmt->bindParam(":mistnost_idmistnost", $mistnost_idmistnost);
         $stmt->execute();
-
     }
 
-    public function getByEmail(string $mail)
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM uzivatel WHERE email LIKE  concat('%', :email, '%') ");
-        $stmt->bindParam(":email", $mail);
-        $stmt->execute();
-        return $stmt->fetchAll();
 
-    }
 
     public function createUdalost(string $nazev, string $idUzivatele)
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("INSERT INTO udalost (idudalost, nazev, uzivatel_iduzivatel) VALUES (NULL, :nazev, :idUzivatele)");
         $stmt->bindParam(":idUzivatele", $idUzivatele);
         $stmt->bindParam(":nazev", $nazev);
@@ -145,6 +145,8 @@ VALUES (NULL, :datum, :popis, :pocet_listku, :cenalistku, :udalost_idudalost, :u
 
     public function createVybaveni(string $nazev, string $popis, string $id)
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("INSERT INTO vybaveni (idvybaveni, mistnost_idmistnost, nazev, popis, stav) VALUES (NULL, :id, :nazev, :popis,'K dispozici' )");
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":nazev", $nazev);
@@ -156,6 +158,8 @@ VALUES (NULL, :datum, :popis, :pocet_listku, :cenalistku, :udalost_idudalost, :u
 
     public function createMistnost(string $nazev, string $popis)
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("INSERT INTO mistnost (idmistnost, nazev, popis) VALUES (NULL, :nazev, :popis)");
         $stmt->bindParam(":nazev", $nazev);
         $stmt->bindParam(":popis", $popis);
@@ -163,17 +167,12 @@ VALUES (NULL, :datum, :popis, :pocet_listku, :cenalistku, :udalost_idudalost, :u
         //return $stmt->fetchAll();
     }
 
-    public function ReadUzivatel(string $id)
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM uzivatel WHERE idUzivatel LIKE   :id");
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
-        return $stmt->fetchAll();
 
-    }
 
     public function readVybaveniMistosti(string $id)
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("SELECT * FROM vybaveni WHERE mistnost_idmistnost LIKE   :id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
@@ -183,6 +182,8 @@ VALUES (NULL, :datum, :popis, :pocet_listku, :cenalistku, :udalost_idudalost, :u
 
     public function readVybaveni(string $id)
     {
+        $setChar = $this->conn->prepare("SET NAMES 'utf8'"); // odstranění problému s kodovaním!!!
+        $setChar->execute();
         $stmt = $this->conn->prepare("SELECT * FROM vybaveni WHERE idvybaveni LIKE   :id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
@@ -191,42 +192,13 @@ VALUES (NULL, :datum, :popis, :pocet_listku, :cenalistku, :udalost_idudalost, :u
     }
 
 
-    // INSERT INTO `uzivatel` (`iduzivatel`, `jmeno`, `heslo`, `email`, `datumPridani`, `roleUzivatele`) VALUES (NULL, 'Martin', 'Kvapil', 'martn.@sez.cz', '', 'admin');
-    public function CreateUzivatel(string $jmeno, string $heslo, string $email, string $roleUzivatele)
-    {
-        $stmt = $this->conn->prepare("INSERT INTO uzivatel (iduzivatel, jmeno, heslo, email, datumPridani, roleUzivatele) VALUES (NULL, :jmeno, :heslo, :email, :datumPridani, :roleUzivatele)");
-
-        $datumPridani = date("Y/m/d");
-        $stmt->bindParam(":jmeno", $jmeno);
-        $stmt->bindParam(":heslo", $heslo);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":roleUzivatele", $roleUzivatele);
-        $stmt->bindParam(":datumPridani", $datumPridani);
-        if ($stmt->execute()) {
-            echo "<div class='alert alert-success'>Create proveden</div>";
-        } else {
-            echo "<div class='alert alert-danger'>Chyba create</div>";
-        }
 
 
-    }
 
-    public function DeleteUzivatel(string $id)
-    {
-        $stmt = $this->conn->prepare("DELETE FROM uzivatel WHERE idUzivatel LIKE  concat('%', :id, '%') ");
-        $stmt->bindParam(":id", $id);
-        if ($stmt->execute()) {
-            echo "<div class='alert alert-success'>delete proveden</div>";
-        } else {
-            echo "<div class='alert alert-danger'>Chyba delete</div>";
-        }
-
-        //return $stmt->fetchAll();
-    }
 
     public function DeleteVybaveni(string $id)
     {
-        $stmt = $this->conn->prepare("DELETE FROM vybaveni WHERE idvybaveni LIKE  concat('%', :id, '%') ");
+        $stmt = $this->conn->prepare("DELETE FROM vybaveni WHERE idvybaveni LIKE :id ");
         $stmt->bindParam(":id", $id);
         if ($stmt->execute()) {
             $message = "Smazano";
@@ -238,23 +210,5 @@ VALUES (NULL, :datum, :popis, :pocet_listku, :cenalistku, :udalost_idudalost, :u
 
     }
 
-    public function UpdateUzivatel(string $id, string $jmeno, string $heslo, string $email, string $roleUzivatele)
-    {
-        $stmt = $this->conn->prepare("UPDATE uzivatel 
-                    SET jmeno=:jmeno, heslo=:heslo, email=:email, roleUzivatele=:roleUzivatele 
-                    WHERE idUzivatel = :id");
-        $stmt->bindParam(":id", $id);
-        $stmt->bindParam(":jmeno", $jmeno);
-        $stmt->bindParam(":heslo", $heslo);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":roleUzivatele", $roleUzivatele);
 
-        if ($stmt->execute()) {
-            echo "<div class='alert alert-success'>Update proveden</div>";
-        } else {
-            echo "<div class='alert alert-danger'>Chyba UPDATE</div>";
-        }
-
-        //return $stmt->fetchAll();
-    }
 }

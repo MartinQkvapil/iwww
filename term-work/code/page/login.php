@@ -5,7 +5,7 @@ if (!empty($_POST) && !empty($_POST["loginMail"]) && !empty($_POST["loginPasswor
     if ($authService->login($_POST["loginMail"], $_POST["loginPassword"])) {
         header("Location:" . BASE_URL);
     } else {
-        echo "<div class=\"wrong\">Uživatel nenalezen!!!</div>";
+        echo "<div class=\"wrong\">Uživatel nebo heslo je špatně!!!</div>";
     }
 } else if (!empty($_POST)) {
     echo "<div class=\"wrong\">Zadejte heslo a jméno!!!</div>";

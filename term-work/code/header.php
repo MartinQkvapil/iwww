@@ -12,14 +12,12 @@
 
 
         <?php if(Authentication::getInstance()->getRole()=='admin'): ?>
-            <li><a href="<?= BASE_URL . "?page=uzivatel" ?>">ZP-Uzivatelů</a></li>
-            <li><a href="<?= BASE_URL . "?page=udalost&action=nic" ?>">Událost</a></li>
-            <li><a href="<?= BASE_URL . "?page=listky&action=nic" ?>">Lístky</a></li>
-            <li><a href="<?= BASE_URL . "?page=mistnosti&action=nic" ?>">Místnost</a></li>
-            <li><a href="<?= BASE_URL . "?page=mistnosti" ?>">Vybavení</a></li>
+            <li><a href="<?= BASE_URL . "?page=uzivatel" ?>">UŽIVATELÉ</a></li>
+            <li><a href="<?= BASE_URL . "?page=udalost&action=nic" ?>">UDÁLOSTI</a></li>
+            <li><a href="<?= BASE_URL . "?page=mistnosti&action=nic" ?>">MÍSTNOSTI</a></li>
+            <li><a href="<?= BASE_URL . "?page=sprava-listky" ?>">LÍSTKY</a></li>
         <?php elseif (Authentication::getInstance()->getRole()=='registrovany') : ?>
-            <li><a href="<?= BASE_URL . "?page=listky&action=nic" ?>">Lístky</a></li>
-            <li><a href="<?= BASE_URL . "?page=mistnosti" ?>">Vybavení</a></li>
+            <li><a href="<?= BASE_URL . "?page=listky&action=nic" ?>">LÍSTKY</a></li>
         <?php endif; ?>
     <?php else : ?>
 

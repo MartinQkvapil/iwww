@@ -1,13 +1,12 @@
-<?php
-$conn = Connection::getPdoInstance();
-$obj = new UdalostRepo($conn);
-?>
-
-
-<div>
-    <h1>Kalendář akcí</h1>
-    <div style="overflow-x:auto;">
-        <?php
+<body>
+<div class="obal">
+    <div class="page-header">
+        <h1>Zobrazení správy lístků</h1>
+    </div>
+    <?php
+    if (Authentication::getInstance()->CanAdmin()) {
+        $conn = Connection::getPdoInstance();
+        $obj = new UdalostRepo($conn);
         $allUsersResult = $obj->getAkce();
 
         $datatable = new DataTable($allUsersResult);
@@ -17,7 +16,10 @@ $obj = new UdalostRepo($conn);
         $datatable->addColumn("popis", "DETAILY UDÁLOSTI");
         $datatable->addColumn("cenalistku", "CENA LÍSTKU");
         $datatable->addColumn("pocet_listku", "POČET LÍSTKŮ");
-        $datatable->render();
-        ?>
-    </div>
+        $datatable->renderSpecial("listky-sp");
+
+    }
+
+    ?>
 </div>
+</body>

@@ -8,7 +8,6 @@ class Authentication
     private $conn = null;
 
 
-
     static function getInstance(): Authentication
     {
         if (self::$instance == NULL) {
@@ -27,22 +26,32 @@ class Authentication
     }
 
 
-
     public function login(string $email, string $password): bool
     {
-        $stmt = $this->conn->prepare("SELECT idUzivatel, jmeno, email, roleUzivatele FROM uzivatel WHERE email= :email and heslo = :heslo");
-        $stmt->bindParam(':email', $_POST["loginMail"]);
-        $stmt->bindParam(':heslo', $_POST["loginPassword"]);
+        $stmt = $this->conn->prepare("SELECT heslo FROM uzivatel WHERE email= :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $data = $stmt->fetch();
+        $hesloZDatabaze = $data['heslo'];
+
+
+        $stmt = $this->conn->prepare("SELECT idUzivatel, jmeno, email, roleUzivatele FROM uzivatel WHERE email= :email");
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
         $user = $stmt->fetch();
 
-        if ($user) {
-            $userDto = array('idUzivatel' => $user['idUzivatel'], 'jmeno' => $user['jmeno'], 'email' => $user['email'], 'roleUzivatele' => $user['roleUzivatele']);
-            $_SESSION['identity'] = $userDto;
-            self::$identity = $userDto;
-            return true;
+        if (password_verify($password, $hesloZDatabaze)) {
+            if ($user) {
+                $userDto = array('idUzivatel' => $user['idUzivatel'], 'jmeno' => $user['jmeno'], 'email' => $user['email'], 'roleUzivatele' => $user['roleUzivatele']);
+                $_SESSION['identity'] = $userDto;
+                self::$identity = $userDto;
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
+
         }
     }
 
@@ -72,7 +81,42 @@ class Authentication
         return $role['roleUzivatele'];
     }
 
+    public function getIDUZIVATEL()
+    {
+        if (self::$identity == NULL) {
+            return false;
+        }
+        $role = self::$identity;
+        return $role['idUzivatel'];
+    }
 
+    public function CanAdmin(): bool
+    {
+        if (self::$identity == NULL) {
+            return false;
+        }
+        $role = self::$identity;
+        if ($role['roleUzivatele'] == "admin") {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function CanRegistrovany(): bool
+    {
+        if (self::$identity == NULL) {
+            return false;
+        }
+        $role = self::$identity;
+        if ($role['roleUzivatele'] == "registrovany") {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
 
     public function logout()
