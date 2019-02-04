@@ -44,14 +44,13 @@
 
 
         <form method="post">
-            <table >
+            <table>
 
                 <tr>
                     <td>JMENO</td>
                     <td><input type='text' name='jmenoGET' value="<?php echo htmlspecialchars($name, ENT_QUOTES); ?>"
                                class='form-control'/></td>
                 </tr>
-
                 <tr>
                     <td>NOVÉ HESLO</td>
                     <td><input type='text' name='hesloGET' value=""
@@ -69,9 +68,12 @@
 
         <h1>Moje lístky:</h1>
         <table>
-            <td> <img src="./pics/red.png" width='20' height='20' > <p> STORNO </p></td>
-            <td> <img src="./pics/green.png" width='20' height='20' > <p> ZAPLACENO </p></td>
-            <td> <img src="./pics/orange.png" width='20' height='20' > <p> NEZAPLACENO </p></td>
+            <td><img src="./pics/red.png" width='20' height='20'>
+                <p> STORNO </p></td>
+            <td><img src="./pics/green.png" width='20' height='20'>
+                <p> ZAPLACENO </p></td>
+            <td><img src="./pics/orange.png" width='20' height='20'>
+                <p> NEZAPLACENO </p></td>
         </table>
 
 
@@ -81,19 +83,27 @@
 
 
         $datatable = new DataTable($listky = $obj->getListky(Authentication::getInstance()->getIDUZIVATEL()));
-
-
         $datatable->addColumn("idfaktura", "ID");
-
         $datatable->addColumn("pocetlistku", "POČET LÍSTKŮ");
         $datatable->addColumn("datum", "datum");
         $datatable->addColumn("detail_udalosti_iddetail_udalosti", "id udalosti");
-
-
         $datatable->renderSpecial("storno");
 
+        $conn = Connection::getPdoInstance();
+
+        $result = $obj->getListky(Authentication::getInstance()->getIDUZIVATEL());
+
+        $json_arrry = $result;
+        $fp = fopen('./page/export.json', 'w');
+        if ($fp) {
+            fwrite($fp, json_encode($result, JSON_PRETTY_PRINT));
+            fclose($fp);
+            echo "<td>" . "<a class='button' href=\"http://localhost:63342/kampelicka/code/page/export.json\" download>STÁHNOUT JSON</a>" . "</td>";
+            die;
+        }
         ?>
 
-    </>
+
+    </div>
 </div>
 

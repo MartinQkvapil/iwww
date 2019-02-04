@@ -13,8 +13,6 @@
     $allUsersResult = $obj->getAkceOne($id);
 
 
-
-
     $datatable = new DataTable($allUsersResult);
 
     $datatable->addColumn("nazev_udalosti", "NÁZEV UDÁLOSTI");
@@ -44,20 +42,21 @@
     <?php
     if ($_POST) {
         if ($_POST['pocetListku']) {
-            $tmp2 =  $obj->getAkceOne($id);
+            $tmp2 = $obj->getAkceOne($id);
             $obj = new ListekRepo($conn);
             $tmp = $obj->kolikProdanych($id);
             $int = ($_POST['pocetListku']);
 
-            $tmp4= $tmp[0][0] + $int;
+            $tmp4 = $tmp[0][0] + $int;
             $tmp3 = $tmp2[0]['pocet_listku'];
-          // echo $tmp4;
 
-            if($tmp4 <= $tmp3){
 
-            $obj = new UdalostRepo($conn);
-            $result = $obj->createListek($_POST['pocetListku'], 1, Authentication::getInstance()->getIdentity()['idUzivatel'], $id);
-            echo "<div class=\"good\">" . "Lístek Registrovan:!" . "</div>";
+            if ($tmp4 <= $tmp3) {
+
+                $obj = new UdalostRepo($conn);
+                $obj->createListek($_POST['pocetListku'], 1, Authentication::getInstance()->getIdentity()['idUzivatel'], $id);
+              
+                echo "<div class=\"good\">" . "Lístek Registrovan:!" . "</div>";
             } else {
 
                 echo "<div class=\"wrong\">" . "Omlouváme se na akci už není kapacita" . "</div>";

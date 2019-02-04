@@ -20,6 +20,11 @@ class DataTable
         $this->columns[$databaseColumnName] = array("table-head-title" => $tableHeadTitle);
     }
 
+    public function addSpecialColumn($databaseColumnName, $tableHeadTitle)
+    {
+        $array[$databaseColumnName] = array("table-head-title" => $tableHeadTitle);
+    }
+
     public function render()
     {
         echo "<table>";
@@ -45,9 +50,6 @@ class DataTable
 
     public function renderSpecial(string $id)
     {
-
-        $conn = Connection::getPdoInstance();
-        $obj = new ListekRepo($conn);
 
         echo "<table>";
         echo "<thead>";

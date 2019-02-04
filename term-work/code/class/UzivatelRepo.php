@@ -71,7 +71,8 @@ class UzivatelRepo
         $stmt->bindParam(":roleUzivatele", $roleUzivatele);
 
         if ($stmt->execute()) {
-            echo "<div class=\"good\">" . "Uprava provedena!" . "</div>";        } else {
+            echo "<div class=\"good\">" . "Uprava provedena!" . "</div>";
+        } else {
             echo "<div class=\"wrong\">" . "Chyba při upravě!" . "</div>";
         }
 
@@ -91,7 +92,7 @@ class UzivatelRepo
             echo "<div class=\"wrong\">" . "Chyba při delete!" . "</div>";
         }
 
-        //return $stmt->fetchAll();
+
     }
 
 }

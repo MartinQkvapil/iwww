@@ -3,9 +3,9 @@
         <h1>Správa uživatelů:</h1>
     </div>
     <?php
-
-    echo "<a class='button' href='?page=vytvor-uzivatele'>VYTVOŘIT UŽIVATELE</a>";
     if (Authentication::getInstance()->CanAdmin()) {
+    echo "<a class='button' href='?page=vytvor-uzivatele'>VYTVOŘIT UŽIVATELE</a>";
+
         try {
             $obj = new UzivatelRepo(Connection::getPdoInstance());
             $row = $obj->getAllUsers();

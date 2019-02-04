@@ -1,30 +1,31 @@
 <?php
-$conn = Connection::getPdoInstance();
-$id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
-if ($_POST) {
-    $jmeno = $_POST['nazev'];
+if (Authentication::getInstance()->CanAdmin()) {
+    $conn = Connection::getPdoInstance();
+    $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
+    if ($_POST) {
+        $jmeno = $_POST['nazev'];
+
+        try {
+            $obj = new UdalostRepo($conn);
+            $idUzivatele = Authentication::getInstance()->getIDUZIVATEL();
+            $obj->UpdateNazevUdalosti($id, $jmeno, $idUzivatele);
+        } catch (PDOException $exception) {
+            echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
+        }
+    }
 
     try {
+
         $obj = new UdalostRepo($conn);
-        $idUzivatele = Authentication::getInstance()->getIDUZIVATEL();
-        $obj->UpdateNazevUdalosti($id, $jmeno, $idUzivatele);
-    } catch (PDOException $exception) {
+        $row = $obj->readOneUdalost($id);
+        $name = $row[0]['nazev'];
+
+    } // show error
+    catch (PDOException $exception) {
         echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
+
     }
-}
-
-try {
-
-    $obj = new UdalostRepo($conn);
-    $row = $obj->readOneUdalost($id);
-    $name = $row[0]['nazev'];
-
-} // show error
-catch (PDOException $exception) {
-    echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
-
-}
-?>
+    ?>
     <body>
     <div class="obal">
         <div style="text-align:center">
@@ -39,7 +40,6 @@ catch (PDOException $exception) {
                 </tr>
 
 
-
             </table>
             <input type='submit' value='ULOŽIT' class='button'/>
             <a href='?page=udalost&action=nic' class='button'>Zpět na události</a>
@@ -47,4 +47,5 @@ catch (PDOException $exception) {
     </div>
     </body>
 
-<?php
+    <?php
+}

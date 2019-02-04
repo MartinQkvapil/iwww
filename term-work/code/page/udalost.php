@@ -1,9 +1,11 @@
+<body>
+<div class="obal">
 <?php
+if (Authentication::getInstance()->CanAdmin()) {
 $conn = Connection::getPdoInstance();
 if ($_GET["action"] == "editUdalost") {
 ?>
-<body>
-<div class="obal">
+
     <div style="text-align:center">
         <h1>Stránka pro editaci názvu události a přidání ročníku:</h1>
     </div>
@@ -44,8 +46,7 @@ if ($_GET["action"] == "editUdalost") {
         $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
 
         ?>
-        <body>
-        <div class="obal">
+
             <h1>Tvořím ročník události:</h1>
             <?php
 
@@ -56,7 +57,6 @@ if ($_GET["action"] == "editUdalost") {
             $combobox_data = array();
             $mistnosti = $obj->getAllMistnosti();
             $udalosti = $obj->getAllUdalosti();
-
             ?>
 
             <form method="POST">
@@ -106,8 +106,7 @@ if ($_GET["action"] == "editUdalost") {
                     }
                 }
                 ?>
-        </div>
-        </body>
+
 
         <?php
 
@@ -145,8 +144,7 @@ if ($_GET["action"] == "editUdalost") {
 
         }
         ?>
-        <body>
-        <div class="obal">
+
             <div style="text-align:center">
                 <h1>Stránka pro Editaci události:</h1>
             </div>
@@ -189,8 +187,7 @@ if ($_GET["action"] == "editUdalost") {
                 <input type='submit' value='ULOŽIT' class='button'/>
                 <a href='?page=udalost&action=nic' class='button'>Zpět na udalosti:</a>
             </form>
-        </div>
-        </body>
+
 
         <?php
 
@@ -218,8 +215,7 @@ if ($_GET["action"] == "editUdalost") {
 
     } else {
         ?>
-        <body>
-        <div class="obal">
+
             <div class="page-header">
                 <h1>Zobrazení událostí:</h1>
             </div>
@@ -240,8 +236,8 @@ if ($_GET["action"] == "editUdalost") {
 
             $datatable->renderSpecial("udalost");
             ?>
-        </div>
-        </body>
+
+
         <?php
 
 
@@ -320,4 +316,6 @@ if ($_GET["action"] == "editUdalost") {
 
         <?php*/
 
-    ?>
+    } ?>
+
+</div>

@@ -21,9 +21,7 @@
         $datatable->addColumn("cenalistku", "CENA LÍSTKU");
         $datatable->addColumn("pocet_listku", "POČET LÍSTKŮ");
         $datatable->renderSpecial("listky");
-
     }
-
     ?>
 </div>
 </body>

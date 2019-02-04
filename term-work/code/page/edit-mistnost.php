@@ -1,35 +1,34 @@
 <?php
-$conn = Connection::getPdoInstance();
-$id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
+if (Authentication::getInstance()->CanAdmin()) {
+    $conn = Connection::getPdoInstance();
+    $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
 
-if ($_POST) {
-    $a = $_POST['nazev'];
-    $b = $_POST['popis'];
+    if ($_POST) {
+        $a = $_POST['nazev'];
+        $b = $_POST['popis'];
+
+        try {
+            $obj = new UdalostRepo($conn);
+            $obj->UpdateMistnost($id, $a, $b);
+        } catch (PDOException $exception) {
+            echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
+        }
+    }
 
     try {
-        $obj = new UdalostRepo($conn);
-        $obj->UpdateMistnost($id, $a, $b);
-    } catch (PDOException $exception) {
+
+        $obj = new UserRepository($conn);
+        $row = $obj->readOneMistnost($id);
+        $nazev = $row[0]['nazev'];
+        $popis = $row[0]['popis'];
+
+
+    } // show error
+    catch (PDOException $exception) {
         echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
+
     }
-}
-
-try {
-
-    $obj = new UserRepository($conn);
-    $row = $obj->readOneMistnost($id);
-    $nazev = $row[0]['nazev'];
-    $popis = $row[0]['popis'];
-
-
-
-
-} // show error
-catch (PDOException $exception) {
-    echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
-
-}
-?>
+    ?>
     <body>
     <div class="obal">
         <div style="text-align:center">
@@ -57,4 +56,5 @@ catch (PDOException $exception) {
     </div>
     </body>
 
-<?php
+    <?php
+}

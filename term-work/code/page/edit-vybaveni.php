@@ -1,45 +1,46 @@
 <?php
-$id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
+if (Authentication::getInstance()->CanAdmin()) {
+    $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
 
-$conn = Connection::getPdoInstance();
-$obj = new UserRepository($conn);
+    $conn = Connection::getPdoInstance();
+    $obj = new UserRepository($conn);
 
-/*
-$datatable = new DataTable($obj->readVybaveni($id));
-$datatable->addColumn("idvybaveni", "ID");
-$datatable->addColumn("nazev", "NAZEV");
-$datatable->addColumn("stav", "STAV");
-$datatable->addColumn("popis", "POPIS");
-$datatable->render();
-*/
+    /*
+    $datatable = new DataTable($obj->readVybaveni($id));
+    $datatable->addColumn("idvybaveni", "ID");
+    $datatable->addColumn("nazev", "NAZEV");
+    $datatable->addColumn("stav", "STAV");
+    $datatable->addColumn("popis", "POPIS");
+    $datatable->render();
+    */
 
-if ($_POST) {
-    $jmeno = $_POST['nazev'];
-    $popis = $_POST['popis'];
-    $stav = $_POST['stav'];
+    if ($_POST) {
+        $jmeno = $_POST['nazev'];
+        $popis = $_POST['popis'];
+        $stav = $_POST['stav'];
+
+        try {
+            $obj = new VybaveniRepo($conn);
+            $obj->UpdateVybaveni($id, $jmeno, $popis, $stav);
+        } catch (PDOException $exception) {
+            echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
+        }
+    }
 
     try {
-        $obj = new VybaveniRepo($conn);
-        $obj->UpdateVybaveni($id, $jmeno, $popis, $stav);
-    } catch (PDOException $exception) {
+
+        $obj = new UserRepository($conn);
+        $row = $obj->readVybaveni($id);
+        $name = $row[0]['nazev'];
+        $email = $row[0]['popis'];
+        $stav = $row[0]['stav'];
+
+    } // show error
+    catch (PDOException $exception) {
         echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
+
     }
-}
-
-try {
-
-    $obj = new UserRepository($conn);
-    $row = $obj->readVybaveni($id);
-    $name = $row[0]['nazev'];
-    $email = $row[0]['popis'];
-    $stav = $row[0]['stav'];
-
-} // show error
-catch (PDOException $exception) {
-    echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
-
-}
-?>
+    ?>
     <body>
     <div class="obal">
         <div style="text-align:center">
@@ -69,4 +70,5 @@ catch (PDOException $exception) {
     </div>
     </body>
 
-<?php
+    <?php
+}

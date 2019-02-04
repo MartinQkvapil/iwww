@@ -25,7 +25,7 @@ $currentPage = 'kampelicka';
                 <input type="text" id="lname" name="prijmeni" placeholder="Vaše příjmení..">
 
                 <label for="subject">Sdělení</label>
-                <textarea id="subject" name="subject" placeholder="Sdělení" style="height:150px"></textarea>
+                <input type="text" id="l2name" name="prijmeni" placeholder="sdělení..">
                 <input type="submit" value="Odeslat">
             </form>
         </div>

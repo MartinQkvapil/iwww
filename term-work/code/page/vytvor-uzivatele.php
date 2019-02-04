@@ -33,21 +33,23 @@
 </body>
 
 <?php
-if ($_POST) {
-    if (isset($_POST['jmeno']) && $_POST['heslo'] && isset($_POST['email']) && $_POST['role']) {
-        $jmeno = $_POST['jmeno'];
-        $email = $_POST['email'];
-        $heslo = $_POST['heslo'];
-        $roleUzivatele = $_POST['role'];
-        try {
-            $obj = new UzivatelRepo(Connection::getPdoInstance());
-            $obj->CreateUzivatel($jmeno, $heslo, $email, $roleUzivatele);
-        } catch (PDOException $exception) {
-            echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
+if (Authentication::getInstance()->CanAdmin()) {
+    if ($_POST) {
+        if (isset($_POST['jmeno']) && $_POST['heslo'] && isset($_POST['email']) && $_POST['role']) {
+            $jmeno = $_POST['jmeno'];
+            $email = $_POST['email'];
+            $heslo = $_POST['heslo'];
+            $roleUzivatele = $_POST['role'];
+            try {
+                $obj = new UzivatelRepo(Connection::getPdoInstance());
+                $obj->CreateUzivatel($jmeno, $heslo, $email, $roleUzivatele);
+            } catch (PDOException $exception) {
+                echo "<div class=\"wrong\">" . $exception->getMessage() . "</div>";
+            }
+        } else {
+            $hlaska = 'Formulář není správně vyplněný!';
+            echo "<div class=\"wrong\">" . $hlaska . "</div>";
         }
-    } else {
-        $hlaska = 'Formulář není správně vyplněný!';
-        echo "<div class=\"wrong\">" . $hlaska . "</div>";
     }
 }
 ?>

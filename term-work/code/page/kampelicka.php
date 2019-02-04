@@ -1,10 +1,9 @@
 <?php
 $currentPage = 'kampelicka';
 ?>
-<!DOCTYPE html>
-<html>
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         * {
             box-sizing:border-box;
@@ -14,14 +13,14 @@ $currentPage = 'kampelicka';
             background-color: gray();
             padding:20px;
             float:left;
-            width:20%; /* The width is 20%, by default */
+            width:20%;
         }
 
         .mainn {
             background-color:#f1f1f1;
             padding:20px;
             float:left;
-            width:60%; /* The width is 60%, by default */
+            width:60%;
         }
 
         .right {
